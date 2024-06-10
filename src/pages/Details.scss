@@ -1,0 +1,246 @@
+.widget {
+  background-color: white;
+  color: #1c1c1e;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+
+  &.dark {
+    background-color: #1c1c1e;
+  }
+
+  .navbar {
+    background-color: white;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    z-index: 10;
+    padding: 1rem;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+
+    &.dark {
+      background-color: #1c1c1e;
+    }
+
+    .navbar-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      .icon-button {
+        color: #3d3d3d;
+        font-size: 1.6rem;
+
+        &.dark {
+          color: #d1d1d1;
+        }
+
+        .icon {
+          width: 1.5rem;
+          height: 1.5rem;
+        }
+      }
+
+      .title {
+        font-size: 1.125rem;
+        font-weight: 600;
+        color: #1c1c1e;
+
+        &.dark {
+          color: #f5f5f5;
+        }
+      }
+    }
+  }
+
+  .content {
+    margin-top: 4rem;
+    padding: 1rem;
+    padding-bottom: 3.875rem;
+
+    .image-container {
+      display: flex;
+      justify-content: center;
+
+      .product-image {
+        width: 90%;
+      }
+    }
+
+    .product-details {
+      margin-top: 1rem;
+
+      .product-title {
+        font-size: 1.25rem;
+        font-weight: 600;
+        color: #1c1c1e;
+
+        &.dark {
+          color: #f5f5f5;
+        }
+      }
+
+      .product-description {
+        color: #525252;
+
+        &.dark {
+          color: #a1a1a1;
+        }
+      }
+
+      .price-section {
+        margin-top: 0.5rem;
+
+        .current-price {
+          color: #dc2626;
+          font-size: 1.5rem;
+          font-weight: 700;
+        }
+
+        .original-price {
+          color: #525252;
+          text-decoration: line-through;
+        }
+      }
+
+      .stats {
+        margin-top: 0.5rem;
+        display: flex;
+        gap: 1rem;
+        color: #525252;
+
+        &.dark {
+          color: #a1a1a1;
+        }
+      }
+    }
+
+    .info-section {
+      margin-top: 1rem;
+      background-color: #fff;
+      padding: 1rem;
+      border-radius: 0.5rem;
+
+      & div {
+        padding-bottom: 0.3rem;
+        border-bottom: 0.1px solid #ebe6e6;
+      }
+
+      .info-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 0.5rem;
+
+        .info-label {
+          color: #525252;
+
+          &.dark {
+            color: #a1a1a1;
+          }
+        }
+
+        .info-value {
+          color: #1c1c1e;
+
+          &.dark {
+            color: #f5f5f5;
+          }
+
+          &.red {
+            color: #dc2626;
+          }
+        }
+      }
+    }
+
+    .reviews-section {
+      border-top: 1px solid #ebe6e6;
+      margin-top: 1rem;
+      background-color: #fff;
+      padding: 1rem;
+      border-radius: 0.5rem;
+
+      &.dark {
+        background-color: #3d3d3d;
+      }
+
+      .reviews-title {
+        font-size: 1.125rem;
+        font-weight: 600;
+        color: #1c1c1e;
+
+        &.dark {
+          color: #f5f5f5;
+        }
+      }
+
+      .review {
+        margin-top: 0.5rem;
+
+        .review-header {
+          display: flex;
+          align-items: center;
+
+          .review-author {
+            color: #1c1c1e;
+
+            &.dark {
+              color: #f5f5f5;
+            }
+          }
+
+          .review-rating {
+            margin-left: 0.5rem;
+            color: #525252;
+
+            &.dark {
+              color: #a1a1a1;
+            }
+          }
+        }
+
+        .review-text {
+          margin-top: 0.5rem;
+          color: #525252;
+
+          &.dark {
+            color: #a1a1a1;
+          }
+        }
+      }
+    }
+  }
+
+  .footer {
+    background-color: white;
+    box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.1);
+    padding: 1rem;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: space-between;
+
+    &.dark {
+      background-color: #1c1c1e;
+    }
+
+    .buy-now,
+    .add-to-cart {
+      padding: 0.5rem 1rem;
+      border-radius: 0.5rem;
+      color: white;
+    }
+
+    .buy-now {
+      background-color: #dc2626;
+    }
+
+    .add-to-cart {
+      background-color: #f59e0b;
+    }
+  }
+}

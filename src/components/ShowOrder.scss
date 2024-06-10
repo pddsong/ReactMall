@@ -1,0 +1,47 @@
+.box {
+  .tou {
+    display: flex;
+    padding: 0.3125rem;
+    justify-content: space-between;
+    padding-bottom: 0.625rem;
+    align-items: center;
+
+    .sc {
+      position: relative;
+      svg {
+        position: absolute;
+        top: 0.145rem;
+      }
+    }
+    .zt {
+      color: red;
+    }
+  }
+
+  .box2 {
+    position: relative;
+    .sl {
+      position: absolute;
+      right: 4.4375rem;
+      bottom: 3.3rem;
+      color: #bbb;
+    }
+  }
+
+  .jine {
+    display: flex;
+    flex-direction: column;
+
+    div {
+      display: flex;
+      flex-direction: row-reverse;
+    }
+
+    button {
+      background-color: #fff9f9;
+      border: none;
+      height: 2.9375rem;
+      color: #fb6d8b;
+    }
+  }
+}

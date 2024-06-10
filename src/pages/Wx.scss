@@ -1,0 +1,52 @@
+.ft {
+  margin-top: 1.625rem;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  gap: 0.625rem;
+  img {
+    width: 3.625rem;
+    height: 3.625rem;
+  }
+  span {
+    position: absolute;
+    left: 0.625rem;
+    font-size: 1.625rem;
+  }
+}
+
+.biga {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  gap: 1.625rem;
+  background-color: #fff;
+  justify-content: center;
+
+  .a {
+    background-color: #1d78fc;
+    width: 80%;
+    margin: auto;
+    height: 2.5625rem;
+    text-align: center;
+    line-height: 2.5625rem;
+    border-radius: 9px;
+    margin-bottom: 0.825rem;
+  }
+  .b {
+    background-color: #fff;
+    width: 80%;
+    margin: auto;
+    height: 2.5625rem;
+    text-align: center;
+    line-height: 2.5625rem;
+    border-radius: 9px;
+    margin-bottom: 0.825rem;
+    border: 1px solid #1d78fc;
+  }
+  p {
+    color: #1d78fc;
+  }
+}

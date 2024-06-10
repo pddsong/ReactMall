@@ -1,0 +1,123 @@
+.widget-container {
+  height: 100%;
+  display: flex;
+  gap: 80px;
+  background-color: #f5f5f5; // bg-zinc-100
+  &.dark {
+    background-color: #1a202c; // bg-zinc-900
+  }
+}
+
+.widget-box {
+  background-color: white; // bg-white
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); // shadow-md
+  border-radius: 0.5rem; // rounded-lg
+  padding: 2rem; // p-8
+  max-width: 24rem; // max-w-sm
+  width: 100%;
+  &.dark {
+    background-color: #2d3748; // dark:bg-zinc-800
+  }
+  .back-button {
+    font-size: 2.25rem;
+    &.dark {
+      color: white;
+    }
+  }
+  .header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 1.5rem; // mb-6
+
+    .title {
+      color: #4a5568; // text-zinc-500
+      font-size: 2.25rem; // text-4xl
+      &.dark {
+        color: #a0aec0; // dark:text-zinc-400
+      }
+    }
+  }
+
+  .welcome-text {
+    font-size: 1.5rem; // text-2xl
+    font-weight: bold; // font-bold
+    margin-bottom: 1.5rem; // mb-6
+    color: #2d3748; // text-zinc-800
+    &.dark {
+      color: #e2e8f0; // dark:text-zinc-100
+    }
+  }
+
+  .input-group {
+    margin-bottom: 1rem; // mb-4
+
+    .label {
+      display: block;
+      color: #4a5568; // text-zinc-700
+      margin-bottom: 0.5rem; // mb-2
+      &.dark {
+        color: #a0aec0; // dark:text-zinc-300
+      }
+    }
+
+    .input {
+      width: 100%;
+      padding: 0.5rem 0.75rem; // px-3 py-2
+      border: 1px solid #e2e8f0; // border
+      border-radius: 0.5rem; // rounded-lg
+      outline: none;
+      &:focus {
+        border-color: #4299e1; // focus:ring-2 focus:ring-blue-500
+        box-shadow: 0 0 0 2px rgba(66, 153, 225, 0.5);
+      }
+      &.dark {
+        background-color: #4a5568; // dark:bg-zinc-700
+        border-color: #718096; // dark:border-zinc-600
+        color: #e2e8f0; // dark:text-zinc-100
+      }
+    }
+  }
+
+  .login-button,
+  .trial-button {
+    width: 100%;
+    background-color: #f90303; // bg-pink-500
+    color: white;
+    padding: 0.5rem 0; // py-2
+    border-radius: 0.5rem; // rounded-lg
+    margin-bottom: 1rem; // mb-4
+    text-align: center;
+    height: 3.25rem;
+  }
+
+  .forgot-password {
+    text-align: center;
+
+    .link {
+      color: #4299e1; // text-blue-500
+      &.dark {
+        color: #63b3ed; // dark:text-blue-400
+      }
+    }
+  }
+
+  .register {
+    text-align: center;
+    margin-top: 1.5rem; // mt-6
+
+    .register-text {
+      color: #4a5568; // text-zinc-700
+      &.dark {
+        color: #a0aec0; // dark:text-zinc-300
+      }
+    }
+
+    .link {
+      color: #4299e1; // text-blue-500
+      &.dark {
+        color: #63b3ed; // dark:text-blue-400
+      }
+    }
+  }
+}

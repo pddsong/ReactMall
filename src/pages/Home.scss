@@ -1,0 +1,114 @@
+body,
+html {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden; /* Prevent horizontal scrolling */
+}
+
+.home {
+  width: 100%;
+  max-width: 100vw;
+
+  overflow-x: hidden;
+  box-sizing: border-box; /* Ensure padding and borders are included in the element's total width and height */
+}
+
+//搜索框
+.search {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  background-color: #fff;
+  padding: 0.5rem;
+  position: fixed; // Remove quotes here
+  top: 0;
+  width: 100%; // Ensure it spans the full width of the viewport
+  z-index: 1000; // Ensure it's above other content
+  gap: rem;
+  input {
+    flex-grow: 1;
+    border-radius: 0.5rem;
+    outline: none;
+  }
+
+  button {
+    color: #ffffff;
+  }
+}
+
+//专题
+
+.fl {
+  display: flex;
+  height: 6.375rem;
+  gap: 3px;
+  margin-top: 1.4rem;
+  justify-content: space-around;
+  align-items: center;
+  background-color: #ffff;
+
+  div {
+    display: flex;
+    align-items: center;
+    justify-items: center;
+    flex-direction: column;
+
+    img {
+      width: 2.5rem;
+      height: 2.5rem;
+    }
+  }
+}
+
+//热门商品
+
+.hot {
+  position: relative;
+  .head {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    margin-top: 0.625rem;
+    background-color: #fff;
+    gap: 0.4688rem;
+    img {
+      width: 50px;
+      height: 50px;
+      margin-left: 1rem;
+    }
+    h3 {
+      margin: 0;
+    }
+    p {
+      margin: 0;
+      font-size: 0.675rem;
+      margin-top: 0.125rem;
+      color: #bbb;
+    }
+
+    span {
+      position: absolute;
+      right: 1.25rem;
+    }
+  }
+  .shop {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    background-color: #fff;
+
+    .card {
+      margin-top: 0.6125rem;
+      padding: 0;
+    }
+  }
+}
+
+.footer {
+  height: 50px;
+  padding-bottom: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #bbb;
+}

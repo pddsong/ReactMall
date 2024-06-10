@@ -1,0 +1,131 @@
+.cart {
+  display: flex;
+  position: relative;
+  flex-direction: column;
+
+  width: 100%;
+  padding-bottom: 8.5rem;
+  background-color: #fff;
+
+  .yq {
+    position: relative;
+
+    .ss {
+      position: absolute;
+      right: 1.75rem;
+      top: 1.675rem;
+      z-index: 999;
+      color: #bbb;
+    }
+  }
+
+  h3 {
+    text-align: center;
+  }
+
+  .card {
+    position: relative;
+    display: flex;
+    gap: 0.4813rem;
+    background-color: #fff;
+    padding-bottom: 20px;
+    align-items: center;
+
+    gap: 0.825rem;
+    .fxc {
+      position: absolute;
+      top: -0.125rem;
+      left: -0.625rem;
+    }
+    img {
+      flex: 1;
+      width: 3.75rem;
+    }
+    .ms {
+      flex: 1.25;
+      display: flex;
+      flex-direction: column;
+      gap: 0.1563rem;
+      padding-top: 0.9375rem;
+      white-space: nowrap; /* 不换行 */
+      overflow: hidden; /* 隐藏溢出的内容 */
+      text-overflow: ellipsis; /* 使用省略号代替溢出的文本 */
+    }
+    p {
+      margin: 0;
+      white-space: nowrap; /* 不换行 */
+      overflow: hidden; /* 隐藏溢出的内容 */
+      text-overflow: ellipsis; /* 使用省略号代替溢出的文本 */
+    }
+  }
+  .conut {
+    display: flex;
+    button {
+      width: 35px;
+      height: 35px;
+      border: none;
+      background-color: #f5f5f5;
+    }
+
+    .text {
+      width: 40px;
+
+      text-align: center;
+      padding: 2px;
+      border: none;
+      background-color: #f5f5f5;
+    }
+  }
+
+  .con {
+    position: fixed;
+    width: 100%;
+    height: 3.25rem;
+    bottom: 4.9625rem;
+    z-index: 999;
+    background-color: #fff;
+
+    .jies {
+      height: 3.25rem;
+      display: flex;
+      align-items: center;
+
+      justify-content: space-between;
+
+      margin: 0 1.9375rem;
+      border-radius: 0.825rem;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2), 0 -5px 15px rgba(0, 0, 0, 0.2);
+      div {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 0.3125rem;
+        button {
+          width: 5.125rem;
+          border-radius: 0.1563rem;
+          border: none;
+          border-radius: 1.25rem;
+          height: 2.725rem;
+          background-color: #fa436a;
+          margin-right: 1.25rem;
+          font-size: 1.0625rem;
+          color: #fff;
+        }
+      }
+    }
+  }
+
+  //空
+  .k {
+    width: 200px;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    .a {
+      color: red;
+    }
+  }
+}
