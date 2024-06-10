@@ -4,13 +4,17 @@ import "./Wx.scss";
 function Wx() {
   const { user } = useAuth();
   const navigator = useNavigate();
-  const datas = localStorage.getItem("users")
-    ? JSON.parse(localStorage.getItem("users"))
+  const datas = JSON.parse(localStorage.getItem("users")).filter(
+    (data) => data.username === user.username
+  ).length
+    ? JSON.parse(localStorage.getItem("users")).filter(
+        (data) => data.username === user.username
+      )[0]
     : [];
   return (
     <div className="biga">
       <div className="ft">
-        <span>&lt;</span>
+        <span onClick={() => navigator(-1)}>&lt;</span>
         <img src="/icons/wx.jpg" alt="" />
         <h3>微信付款</h3>
       </div>

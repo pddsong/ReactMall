@@ -2,10 +2,12 @@
 import { Card } from "@nutui/nutui-react";
 import "./ShowOrder.scss";
 import { useState } from "react";
+import { useAuth } from "../contexts/FakeAuthContext";
 
 // eslint-disable-next-line react/prop-types
 const ShowOrder = ({ data1 }) => {
   const [data, setDatas] = useState(data1);
+  const { user } = useAuth();
   const state = {
     shopDescription: "自营",
     delivery: "厂商配送",
@@ -25,15 +27,27 @@ const ShowOrder = ({ data1 }) => {
     : [];
 
   function handleDelete() {
-    const users = JSON.parse(localStorage.getItem("users"));
+    const users = JSON.parse(localStorage.getItem("users")).filter(
+      (data) => data.username === user.username
+    )[0];
     users.order = users.order.filter((order) => order.id !== data.id);
-    localStorage.setItem("users", JSON.stringify(users));
+    let originalData = JSON.parse(localStorage.getItem("users"));
+
+    const x = originalData.map((data) => {
+      if (data.username === user.username) return users;
+      else {
+        return data;
+      }
+    });
+
+    localStorage.setItem("users", JSON.stringify(x));
     setDatas(null);
   }
 
   if (!order.length) {
     return;
   }
+
   return (
     <div className="box">
       <div className="tou">

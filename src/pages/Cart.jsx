@@ -8,13 +8,19 @@ import { useEffect, useState } from "react";
 
 function Cart() {
   const navigator = useNavigate();
-  const { isAuthenticated } = useAuth();
-  const [isAllChecked, setIsAllChecked] = useState(false);
+
+  const { isAuthenticated, user } = useAuth();
+  const [isAllChecked, setIsAllChecked] = useState("one");
   const [totalPrice, setTotalPrice] = useState(0);
   // eslint-disable-next-line no-unused-vars
   const [datas, setDatas] = useState(
-    JSON.parse(localStorage.getItem("users"))
-      ? JSON.parse(localStorage.getItem("users")).cart
+    isAuthenticated &&
+      JSON.parse(localStorage.getItem("users")).filter(
+        (data) => data.username === user.username
+      ).length
+      ? JSON.parse(localStorage.getItem("users")).filter(
+          (data) => data.username === user.username
+        )[0].cart
       : []
   );
 
@@ -25,7 +31,11 @@ function Cart() {
   const handleAllCheckedChange = () => {
     setTotalPrice(0);
 
-    setIsAllChecked((prev) => !prev);
+    setIsAllChecked((prev) => {
+      if (prev === "one") {
+        return true;
+      } else return !prev;
+    });
   };
 
   const handleCardCheckChange = (price, isChecked) => {
@@ -39,34 +49,62 @@ function Cart() {
       return;
     }
     let originalData = JSON.parse(localStorage.getItem("users"));
-    originalData = { ...originalData, totalPrice: totalPrice };
-    localStorage.setItem("users", JSON.stringify(originalData));
+    let zhangh = originalData.filter((data) => data.username === user.username);
+    zhangh[0] = { ...zhangh[0], totalPrice: totalPrice };
+
+    const x = originalData.map((data) => {
+      if (data.username === user.username) return zhangh[0];
+      else {
+        return data;
+      }
+    });
+
+    localStorage.setItem("users", JSON.stringify(x));
     navigator("/order");
   }
 
   function inFo(id, key, value) {
     let originalData = JSON.parse(localStorage.getItem("users"));
+    const zhangh = originalData.filter(
+      (data) => data.username === user.username
+    );
     let updatedData = {
-      ...originalData, // 复制原始数据的其他属性
-      cart: originalData.cart.map((item) => {
+      ...zhangh[0], // 复制原始数据的其他属性
+      cart: zhangh[0].cart.map((item) => {
         if (item.id === id) {
           return { ...item, [key]: value };
         }
         return item;
       }),
     };
-    localStorage.setItem("users", JSON.stringify(updatedData));
+    const x = originalData.map((data) => {
+      if (data.username === user.username) return updatedData;
+      else {
+        return data;
+      }
+    });
+
+    localStorage.setItem("users", JSON.stringify(x));
   }
 
   function handleDele(productIdToDelete) {
     let users = JSON.parse(localStorage.getItem("users"));
+    const zhangh = users.filter((data) => data.username === user.username);
 
-    users.cart = users.cart.filter((item) => item.id !== productIdToDelete);
+    zhangh[0].cart = zhangh[0].cart.filter(
+      (item) => item.id !== productIdToDelete
+    );
 
-    setDatas(users.cart);
+    const x = users.map((data) => {
+      if (data.username === user.username) return zhangh[0];
+      else {
+        return data;
+      }
+    });
+    setDatas(zhangh[0].cart);
 
     // 更新localStorage中的数据
-    localStorage.setItem("users", JSON.stringify(users));
+    localStorage.setItem("users", JSON.stringify(x));
   }
 
   return (
@@ -74,7 +112,7 @@ function Cart() {
       <h3>购物车</h3>
       {isAuthenticated && (
         <>
-          {datas.map((data) => (
+          {datas?.map((data) => (
             <div className="yq" key={data.id}>
               <span className="ss" onClick={() => handleDele(data.id)}>
                 删除
@@ -92,7 +130,7 @@ function Cart() {
           <div className="con">
             <div className="jies">
               <Checkbox
-                checked={isAllChecked}
+                checked={isAllChecked === "one" ? false : isAllChecked}
                 onChange={handleAllCheckedChange}
                 sx={{
                   color: pink[800],

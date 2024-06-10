@@ -1,15 +1,18 @@
-import React, { useState } from "react";
-import { Table, Tag, Space } from "antd";
+import { useState } from "react";
+import { Table, Tag, Space, Button } from "antd";
 
 const Order = () => {
   const [data1, setData] = useState(
-    localStorage.getItem("users")
-      ? JSON.parse(localStorage.getItem("users"))
+    localStorage.getItem("allOrder")
+      ? { order: JSON.parse(localStorage.getItem("allOrder")) }
       : []
   );
 
-  function handleFh(id) {
-    const d = JSON.parse(localStorage.getItem("users"));
+  function handleFh(id, username) {
+    const d = JSON.parse(localStorage.getItem("users")).filter(
+      (data) => data.username === username
+    )[0];
+
     const x = d.order.map((va) => {
       if (va.id === id) {
         va.status = true;
@@ -17,12 +20,37 @@ const Order = () => {
       }
       return va;
     });
-    localStorage.setItem("users", JSON.stringify({ ...d, order: x }));
-    setData({ ...d, order: x });
+
+    const xinU = { ...d, order: x };
+
+    let originalData = JSON.parse(localStorage.getItem("users"));
+    const nUsers = originalData.map((value) => {
+      if (value.username === username) return xinU;
+      else return value;
+    });
+
+    localStorage.setItem("users", JSON.stringify(nUsers));
+
+    const gaiO = x.find((order) => order.id === id);
+
+    const aO = JSON.parse(localStorage.getItem("allOrder"));
+    const xAo = aO.map((value) => {
+      if (value.id === id) {
+        return gaiO;
+      } else return value;
+    });
+
+    localStorage.setItem("allOrder", JSON.stringify(xAo));
+
+    setData({ order: xAo });
   }
 
-  function handleSc(id) {
-    const d = JSON.parse(localStorage.getItem("users"));
+  function handleSc(id, username) {
+    console.log(id);
+    const d = JSON.parse(localStorage.getItem("users")).filter(
+      (data) => data.username === username
+    )[0];
+    console.log(d);
     const x = d.order.filter((va) => {
       if (va.id === id) {
         return false;
@@ -30,8 +58,22 @@ const Order = () => {
       return true;
     });
     console.log(x);
-    localStorage.setItem("users", JSON.stringify({ ...d, order: x }));
-    setData({ ...d, order: x });
+    const xinU = { ...d, order: x };
+    console.log(xinU);
+    let originalData = JSON.parse(localStorage.getItem("users"));
+    const nUsers = originalData.map((value) => {
+      if (value.username === username) return xinU;
+      else return value;
+    });
+    localStorage.setItem("users", JSON.stringify(nUsers));
+
+    const aO = JSON.parse(localStorage.getItem("allOrder"));
+    const updatedOrders = aO.filter((order) => order.id !== id);
+    console.log(updatedOrders);
+
+    localStorage.setItem("allOrder", JSON.stringify(updatedOrders));
+
+    setData({ order: updatedOrders });
   }
 
   const columns = [
@@ -78,8 +120,17 @@ const Order = () => {
       key: "o_action",
       render: (_, record) => (
         <Space size="middle">
-          {!record.status && <a onClick={() => handleFh(record.id)}>发货</a>}
-          <a onClick={() => handleSc(record.id)}>删除订单</a>
+          {!record.status && (
+            <Button
+              type="primary"
+              onClick={() => handleFh(record.id, record.username)}
+            >
+              发货
+            </Button>
+          )}
+          <Button onClick={() => handleSc(record.id, record.username)}>
+            删除订单
+          </Button>
         </Space>
       ),
     },

@@ -22,8 +22,12 @@ function Qpay() {
   const { user } = useAuth();
   const navigator = useNavigate();
 
-  const datas = localStorage.getItem("users")
-    ? JSON.parse(localStorage.getItem("users"))
+  const datas = JSON.parse(localStorage.getItem("users")).filter(
+    (data) => data.username === user.username
+  ).length
+    ? JSON.parse(localStorage.getItem("users")).filter(
+        (data) => data.username === user.username
+      )[0]
     : [];
 
   const checkedItems = datas.cart.filter((item) => item.isCheck === true);
@@ -38,6 +42,7 @@ function Qpay() {
     let newDatas = {
       ...datas,
       cart: datas.cart.filter((item) => !item.isCheck),
+      totalPrice: 0,
     };
     const oder = {
       id: generateUniqueId(),
@@ -46,11 +51,21 @@ function Qpay() {
       time: getCurrentTimeString(),
       totalPrice: datas.totalPrice,
       fs: s ? "支付宝" : "微信",
+      username: user.username,
     };
-
     newDatas.order.unshift(oder);
+    let originalData = JSON.parse(localStorage.getItem("users"));
+    const x = originalData.map((data) => {
+      if (data.username === user.username) return newDatas;
+      else {
+        return data;
+      }
+    });
+    const allArder = JSON.parse(localStorage.getItem("allOrder"));
+    allArder.unshift(oder);
 
-    localStorage.setItem("users", JSON.stringify(newDatas));
+    localStorage.setItem("allOrder", JSON.stringify(allArder));
+    localStorage.setItem("users", JSON.stringify(x));
     navigator("/cg");
   };
   const s = pa.pathname === "/qzf/1";

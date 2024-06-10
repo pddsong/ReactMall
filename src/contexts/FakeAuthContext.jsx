@@ -19,6 +19,8 @@ function reducer(state, action) {
       return { ...state, user: null, isAuthenticated: false };
     case "adimLogin":
       return { ...state, isAdim: true };
+    case "adimLogout":
+      return { ...state, isAdim: false };
     default:
       throw new Error("Unknown action");
   }
@@ -32,8 +34,15 @@ function AuthProvider({ children }) {
   );
 
   function login(username, password) {
-    const user = JSON.parse(localStorage.getItem("users"));
+    let user = JSON.parse(localStorage.getItem("users")).filter(
+      (data) => data.username === username
+    );
+    user = user[0];
+    console.log(user.username);
 
+    console.log(
+      username === user.username && Number(password) === user.password
+    );
     if (username === user.username && Number(password) === user.password) {
       localStorage.setItem("userInfo", JSON.stringify(user));
       dispatch({ type: "login", payload: user });
@@ -58,9 +67,21 @@ function AuthProvider({ children }) {
     localStorage.removeItem("userInfo");
   }
 
+  function adminLogout() {
+    dispatch({ type: "adimLogout" });
+  }
+
   return (
     <AuthContext.Provider
-      value={{ user, isAuthenticated, login, logout, isAdim, adimLogin }}
+      value={{
+        user,
+        isAuthenticated,
+        login,
+        logout,
+        isAdim,
+        adimLogin,
+        adminLogout,
+      }}
     >
       {children}
     </AuthContext.Provider>

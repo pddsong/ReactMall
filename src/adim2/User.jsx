@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { Table, Space, Switch, Button, Modal, Radio } from "antd";
 
 const User = () => {
@@ -74,9 +74,18 @@ const User = () => {
       ),
     },
   ];
-  const { cart, order, totalPrice, ...other } = users;
-  const data = [{ ...other, u_state: ["已启用", "未启用"], u_id: 1, key: "1" }];
-  console.log(other);
+
+  const data = users
+    ? users.map((data, index) => {
+        return {
+          ...data,
+          u_state: ["已启用", "未启用"],
+          u_id: index + 1,
+          key: index + 1,
+        };
+      })
+    : [];
+
   // const data = [
   //   {
   //     key: "1",
@@ -161,8 +170,11 @@ const User = () => {
   const handleOk = () => {
     console.log("确认删除用户:", selectedUserId);
     setIsDeleteModalVisible(false);
-    localStorage.setItem("users", JSON.stringify({}));
-    setUsers({});
+    const users = JSON.parse(localStorage.getItem("users"));
+    const udUsers = users.filter((order) => order.username !== selectedUserId);
+
+    localStorage.setItem("users", JSON.stringify(udUsers));
+    setUsers(udUsers);
   };
 
   const handleCancel = () => {
@@ -182,7 +194,7 @@ const User = () => {
       </Modal>
       <Modal
         title="分配角色"
-        visible={isAssignRoleModalVisible}
+        open={isAssignRoleModalVisible}
         onOk={handleRoleOk}
         onCancel={handleRoleCancel}
       >

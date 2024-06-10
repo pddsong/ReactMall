@@ -5,18 +5,22 @@ import React from "react";
 
 function Order() {
   const { user } = useAuth();
-  const datas = localStorage.getItem("users")
-    ? JSON.parse(localStorage.getItem("users"))
+  const datas = JSON.parse(localStorage.getItem("users")).filter(
+    (data) => data.username === user.username
+  ).length
+    ? JSON.parse(localStorage.getItem("users")).filter(
+        (data) => data.username === user.username
+      )[0]
     : [];
 
   const products = localStorage.getItem("products")
     ? JSON.parse(localStorage.getItem("products"))
     : [];
 
-  const totalPrice = JSON.parse(localStorage.getItem("users")).totalPrice;
+  const totalPrice = datas.totalPrice;
 
   const checkedItems = datas.cart.filter((item) => item.isCheck === true);
-  console.log(checkedItems);
+
   const result = products.filter((item2) => {
     return checkedItems.some((item1) => item1.productId === item2.id);
   });

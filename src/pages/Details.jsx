@@ -1,9 +1,11 @@
 import { useNavigate, useParams } from "react-router-dom";
 import "./Details.scss";
+import { useAuth } from "../contexts/FakeAuthContext";
 
 function Details() {
   const { id } = useParams();
   const navigator = useNavigate();
+  const { user } = useAuth();
   // eslint-disable-next-line no-unused-vars
   const product = JSON.parse(localStorage.getItem("products")).filter(
     (data) => data.id === Number(id)
@@ -23,9 +25,23 @@ function Details() {
       num: 1,
       isCheck: false,
     };
-    const users = JSON.parse(localStorage.getItem("users"));
+    const users = JSON.parse(localStorage.getItem("users")).filter(
+      (data) => data.username === user.username
+    ).length
+      ? JSON.parse(localStorage.getItem("users")).filter(
+          (data) => data.username === user.username
+        )[0]
+      : [];
     users.cart.push(newProduct);
-    localStorage.setItem("users", JSON.stringify(users));
+    let originalData = JSON.parse(localStorage.getItem("users"));
+    const x = originalData.map((data) => {
+      if (data.username === user.username) return users;
+      else {
+        return data;
+      }
+    });
+
+    localStorage.setItem("users", JSON.stringify(x));
     navigator("/cart");
   }
 
@@ -37,7 +53,12 @@ function Details() {
             <span onClick={() => navigator(-1)}>&lt;</span>
           </div>
           <span className="title">详细展示</span>
-          <button className="icon-button"></button>
+          <button
+            style={{
+              opacity: -1,
+            }}
+            className="icon-button"
+          ></button>
         </div>
       </div>
       <div className="content">

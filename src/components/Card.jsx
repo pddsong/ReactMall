@@ -6,9 +6,10 @@ import Checkbox from "@mui/material/Checkbox";
 function Card({ data, isAllChecked, onCheckChange, setTotalPrice, inFo }) {
   const [conut, setCount] = useState(1);
   // eslint-disable-next-line react/prop-types
-  const [isCheck, setIsCheck] = useState(data.isCheck);
+  const [isCheck, setIsCheck] = useState(false);
 
   // eslint-disable-next-line no-unused-vars
+
   const [datas, setDatas] = useState([]);
 
   let price = datas[0]?.price * conut;
@@ -30,6 +31,7 @@ function Card({ data, isAllChecked, onCheckChange, setTotalPrice, inFo }) {
             return true;
           } else return false;
         });
+
         setDatas(filteredProducts);
       } catch (error) {
         console.error("Error fetching products from localStorage:", error);
@@ -38,12 +40,13 @@ function Card({ data, isAllChecked, onCheckChange, setTotalPrice, inFo }) {
 
     fetchProductsFromLocalStorage();
     // eslint-disable-next-line react/prop-types
-  }, [data.id]); // 仅当data.id变化时重新运行此effect
+  }, [data.id]);
 
   useEffect(() => {
+    if (isAllChecked === "one") return;
     setIsCheck(isAllChecked);
     // eslint-disable-next-line react/prop-types
-    inFo(data.id, "isCheck", !isCheck);
+    inFo(data.id, "isCheck", isAllChecked);
     onCheckChange(price, isAllChecked);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isAllChecked]);

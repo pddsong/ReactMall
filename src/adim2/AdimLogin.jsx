@@ -32,7 +32,11 @@ function AdimLogin() {
     <div className={styles.login}>
       <div className={styles.card}>
         <div className={styles.left}>
-          <h1>Hello Wlcome.</h1>
+          <h1>
+            管理员
+            <br />
+            登录
+          </h1>
         </div>
         <div className={styles.right}>
           <h1>Login</h1>

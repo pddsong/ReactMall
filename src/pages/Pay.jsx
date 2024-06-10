@@ -1,12 +1,17 @@
 import { useState } from "react";
 import "./Pay.scss";
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "../contexts/FakeAuthContext";
 
 function Pay() {
   const [selectedOption, setSelectedOption] = useState("");
-
-  const datas = localStorage.getItem("users")
-    ? JSON.parse(localStorage.getItem("users"))
+  const { user } = useAuth();
+  const datas = JSON.parse(localStorage.getItem("users")).filter(
+    (data) => data.username === user.username
+  ).length
+    ? JSON.parse(localStorage.getItem("users")).filter(
+        (data) => data.username === user.username
+      )[0]
     : [];
   // const checkedItems = datas.cart.filter((item) => item.isCheck === true);
 

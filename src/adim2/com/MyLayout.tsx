@@ -10,6 +10,7 @@ import {
 import { Button, Dropdown, Layout, Menu, theme } from "antd";
 import React, { useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
+import { useAuth } from "../../contexts/FakeAuthContext";
 const { Header, Sider, Content } = Layout;
 
 const MyLayout = ({
@@ -22,7 +23,7 @@ const MyLayout = ({
   setIsJ,
 }: any) => {
   const [collapsed, setCollapsed] = useState(false);
-  const navigate = useNavigate();
+  const { adminLogout } = useAuth();
   const {
     token: { colorBgContainer, borderRadiusLG },
   } = theme.useToken();
@@ -172,6 +173,7 @@ const MyLayout = ({
           />
           <span className="headtitle">adim的信息管理系统</span>
           <Button
+            onClick={() => adminLogout()}
             type="text"
             style={{
               fontSize: "16px",

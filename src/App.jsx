@@ -13,10 +13,8 @@ import "@nutui/nutui-react/dist/style.css";
 import Details from "./pages/Details.jsx";
 import Order from "./pages/Order.jsx";
 import Pay from "./pages/Pay.jsx";
-import { AuthProvider, useAuth } from "./contexts/FakeAuthContext.jsx";
+import { AuthProvider } from "./contexts/FakeAuthContext.jsx";
 import MyOrder from "./pages/MyOrder.jsx";
-
-import { useEffect, useState } from "react";
 
 import Wx from "./pages/Wx.jsx";
 import Zfb from "./pages/Zfb.jsx";
@@ -39,8 +37,6 @@ const Layout = () => {
 };
 
 function App() {
-  const [adim, setAdim] = useState(false);
-  const { isAdim } = useAuth();
   const router = createBrowserRouter([
     {
       path: "/",

@@ -4,8 +4,12 @@ import "./Wx.scss";
 function Zfb() {
   const { user } = useAuth();
   const navigator = useNavigate();
-  const datas = localStorage.getItem("users")
-    ? JSON.parse(localStorage.getItem("users"))
+  const datas = JSON.parse(localStorage.getItem("users")).filter(
+    (data) => data.username === user.username
+  ).length
+    ? JSON.parse(localStorage.getItem("users")).filter(
+        (data) => data.username === user.username
+      )[0]
     : [];
   return (
     <div className="biga">

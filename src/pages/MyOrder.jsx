@@ -4,10 +4,14 @@ import "@nutui/nutui-react/dist/style.css"; // 引入 NutUI 样式
 import "./MyOrder.scss";
 import { useNavigate } from "react-router-dom";
 import ShowOrder from "../components/ShowOrder";
+import { useAuth } from "../contexts/FakeAuthContext";
 
 function MyOrder() {
+  const { user } = useAuth();
   const [tab1value, setTab1value] = useState("0");
-  const allOrder = JSON.parse(localStorage.getItem("users")).order;
+  const allOrder = JSON.parse(localStorage.getItem("users")).filter(
+    (data) => data.username === user.username
+  )[0].order;
   const daiOrder = allOrder.filter((data) => !data.status);
   const wOrder = allOrder.filter((data) => {
     return data.status;
