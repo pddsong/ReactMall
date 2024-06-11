@@ -76,12 +76,12 @@ const ShowOrder = ({ data1 }) => {
             <div className="box2" key={vlue.id}>
               {" "}
               <Card
-                src={`/imgs/products/${vlue.product.image}`}
-                title={vlue.product.description1}
-                price={vlue.product.price}
+                src={`/imgs/products/${vlue.product?.image}`}
+                title={vlue.product?.description1}
+                price={vlue.product?.price}
                 shopDescription={state.shopDescription}
                 delivery={state.delivery}
-                shopName={"商家自营店"}
+                shopName={!vlue.product ? `该商品已下架` : `商家自营店`}
               />
               <span className="sl">{`x ${vlue.num}`}</span>
             </div>

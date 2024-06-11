@@ -68,10 +68,28 @@ const Products = () => {
   const [data, setDate] = useState(sj);
 
   function handleDelete(id) {
-    console.log(id);
     let o = data.filter((order) => order.id !== id);
+
+    const users = JSON.parse(localStorage.getItem("users"));
+    users.forEach((user, index1) => {
+      // users[index1].cart = users[index1].cart.filter((item) => item.id !== id);
+      user.cart = user.cart.filter((item) => item.id !== id);
+      user.order = user.order.map((order) => ({
+        ...order,
+        products: order.products.map((product) => {
+          if (product.productId == id) {
+            return { ...product, productId: false };
+          }
+          return product;
+        }),
+      }));
+      users[index1] = user;
+    });
+
     setDate(o);
+
     localStorage.setItem("products", JSON.stringify(o));
+    localStorage.setItem("users", JSON.stringify(users));
   }
 
   return <Table columns={columns} dataSource={data} />;

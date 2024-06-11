@@ -78,7 +78,7 @@ function Card({ data, isAllChecked, onCheckChange, setTotalPrice, inFo }) {
     // eslint-disable-next-line react/prop-types
     inFo(data.id, "isCheck", !isCheck);
   }
-
+  console.log(datas);
   return (
     <div className="card">
       <Checkbox

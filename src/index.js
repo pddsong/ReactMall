@@ -242,20 +242,20 @@ const adim = { username: "admin", password: 123456 };
 
 let productsString;
 
-// productsString = JSON.stringify(products);
-// localStorage.setItem("products", productsString);
+productsString = JSON.stringify(products);
+localStorage.setItem("products", productsString);
 
-// productsString = JSON.stringify(users);
-// localStorage.setItem("users", productsString);
+productsString = JSON.stringify(users);
+localStorage.setItem("users", productsString);
 
-// productsString = JSON.stringify(allOrder);
-// localStorage.setItem("allOrder", productsString);
+productsString = JSON.stringify(allOrder);
+localStorage.setItem("allOrder", productsString);
 
-// productsString = JSON.stringify(carousel);
-// localStorage.setItem("carousel", productsString);
+productsString = JSON.stringify(carousel);
+localStorage.setItem("carousel", productsString);
 
-// productsString = JSON.stringify(classify);
-// localStorage.setItem("classify", productsString);
+productsString = JSON.stringify(classify);
+localStorage.setItem("classify", productsString);
 
-// productsString = JSON.stringify(adim);
-// localStorage.setItem("adim", productsString);
+productsString = JSON.stringify(adim);
+localStorage.setItem("adim", productsString);
